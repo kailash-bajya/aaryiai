@@ -1,10 +1,10 @@
 var knex = require('./connection');
-
-exports.signupDBController =(name,dob,passport,pstatus,pfilename,aadhar,aastatus,aafilename,pan,panstatus,panfilename,address)=>{
+ 
+exports.signupDBController =(name,pass,dob,passport,pstatus,pfilename,aadhar,aastatus,aafilename,pan,panstatus,panfilename,address)=>{
   return new Promise(function(resolve){
     knex('userdetails').select('username').where({username:name}).then(function(result){
         if(result.length==0){
-          knex('userdetails').insert({username:name,dofb:dob,passportnum:passport,pastatus:pstatus,pafile:pfilename,aadharnum:aadhar,aadharstatus:aastatus,aadharfile:aafilename,pannum:pan,panstatus:panstatus,panfile:panfilename,uaddress:address}).then(function(result){
+          knex('userdetails').insert({username:name,password:pass,dofb:dob,passportnum:passport,pastatus:pstatus,pafile:pfilename,aadharnum:aadhar,aadharstatus:aastatus,aadharfile:aafilename,pannum:pan,panstatus:panstatus,panfile:panfilename,uaddress:address}).then(function(result){
           resolve({status:true,data:"Congratulation! Now you are Registered"})
           },function(err){
               console.log(err);

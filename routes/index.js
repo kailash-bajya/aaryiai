@@ -23,7 +23,7 @@ router.post('/registeruser',upload.any(),function(req,res){
     
      })
    r= req.body.user;
-   await controller.signupDBController(r.name,r.dob,r.passportnum,r.passport,r.pfilename,r.aadharnum,r.aadhar,r.aafilename,r.pannum,r.pan,r.panfilename,r.address).then(function(data){
+   await controller.signupDBController(r.name,r.password,r.dob,r.passportnum,r.passport,r.pfilename,r.aadharnum,r.aadhar,r.aafilename,r.pannum,r.pan,r.panfilename,r.address).then(function(data){
      res.send(data);
    });
 }abc();

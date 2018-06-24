@@ -13,7 +13,7 @@ app.controller('myCtrl',['$scope','$http','$window','$modal','$filter',function(
          var file1 = document.getElementById('aadharid').files[0];            
          fd.append('aafilename',file1);
          }
-         if($scope.data.panid){
+         if($scope.data.pan){
         var file2 = document.getElementById('panid').files[0];
          fd.append('panfilename',file2);}
         console.log(fd);
@@ -24,8 +24,8 @@ app.controller('myCtrl',['$scope','$http','$window','$modal','$filter',function(
                  }
                 }
              )
-             .then(function(data) {
-                 $scope.ListUsers = data;
+             .then(function(response) {
+                 console.log(response.data);
              })
         
     }

@@ -34,8 +34,8 @@ module.exports = {
       port:5432,
       database: 'd2vg6m8s06pq5a',
       user:     'gsvrushoseclob',
-      password: 'd9823e9a5c3b7111912f46eefbe3b421ffb8ce674ca354d473ded6e9fa6e5d60'
-    },
+      password: 'd9823e9a5c3b7111912f46eefbe3b421ffb8ce674ca354d473ded6e9fa6e5d60',
+      ssl:true},
     pool: {
       min: 2,
       max: 10

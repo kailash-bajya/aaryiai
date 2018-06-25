@@ -83,4 +83,24 @@ router.post('/deletedata',function(req,res){
      res.send(data);
    })
 })
+router.post('/userlogin',function(req,res){
+controller.userlogin(req.body).then(function(data){
+  res.send(data);
+})
+})
+router.get('/getpassport',function(req,res){
+  controller.getpassport(req).then(function(data){
+    res.send(data);
+  })
+})
+router.get('/getaadhar',function(req,res){
+  controller.getaadhar(req).then(function(data){
+    res.send(data);
+  })
+})
+router.get('/getpan',function(req,res){
+    controller.getpan(req).then(function(data){
+      res.send(data);
+    })
+})
 module.exports = router;

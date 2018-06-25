@@ -145,3 +145,72 @@ exports.deletedata = (req)=>{
            reject({status:false,data:"contact to admin."});
     })
 }
+exports.userlogin=(req)=>{
+return new Promise(function(resolve){
+    knex('userdetails').select('username','dofb','uaddress').where({username:req.user,password:req.pass}).then(function(result){
+         console.log(result);
+        if(result.length==1)
+        resolve({status:true,"data":result});
+        else
+        resolve({status:false,"data":result});
+    },function(err){
+        console.log(err);
+      resolve({status:false,data:"please contact with admin."})
+    })
+  },function(reject){
+   reject({status:false,data:"something went wrong."})
+  }) 
+}
+
+exports.getpassport=(req)=>{
+    return new Promise(function(resolve){
+        knex('userdetails').select('pafile','pastatus').where({username:req}).then(function(result){
+             console.log(result);
+            if(result.length==1)
+            resolve({status:true,"data":result});
+            else
+            resolve({status:false,"data":result});
+        },function(err){
+            console.log(err);
+          resolve({status:false,data:"please contact with admin."})
+        })
+      },function(reject){
+       reject({status:false,data:"something went wrong."})
+      }) 
+    }
+
+    
+exports.getaadhar=(req)=>{
+    return new Promise(function(resolve){
+        knex('userdetails').select('aadharfile','aadharstatus').where({username:req}).then(function(result){
+             console.log(result);
+            if(result.length==1)
+            resolve({status:true,"data":result});
+            else
+            resolve({status:false,"data":result});
+        },function(err){
+            console.log(err);
+          resolve({status:false,data:"please contact with admin."})
+        })
+      },function(reject){
+       reject({status:false,data:"something went wrong."})
+      }) 
+    }
+
+    
+exports.getpan=(req)=>{
+    return new Promise(function(resolve){
+        knex('userdetails').select('panfile','panstatus').where({username:req}).then(function(result){
+             console.log(result);
+            if(result.length==1)
+            resolve({status:true,"data":result});
+            else
+            resolve({status:false,"data":result});
+        },function(err){
+            console.log(err);
+          resolve({status:false,data:"please contact with admin."})
+        })
+      },function(reject){
+       reject({status:false,data:"something went wrong."})
+      }) 
+    }

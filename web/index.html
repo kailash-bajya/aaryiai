@@ -18,7 +18,7 @@
 </head>
 
 <body ng-app="myApp" ng-controller="myCtrl">
-     <div class="container">
+     <div class="container" ng-hide="usersdata">
         <div class="row" style="font-size:16px">
             <div class="col-md-2 col-lg-2 col-md-offset-4 col-lg-offset-4">
                 <a href='/'>SignUp</a>
@@ -27,8 +27,19 @@
                     <a href='#!login'>LogIn</a>
                 </div>
         </div>
-     </div>
+    
      <ng-view></ng-view>
+  </div>
+  <div class="container" ng-hide="userstatus">
+        <div class="row">
+                <div class="btn btn-warning pull-right" ng-click="logout()">logout</div>
+                </div>
+     <div class="row">
+         <div><span>Name:{{userfulldata.username}}</span></div>
+         <div><span>DOB:{{userfulldata.dofb | date:'yyyy-MM-dd'}}</span></div>
+         <div><span>Address:{{userfulldata.uaddress}}</span></div>
+     </div>
+  
   </div>
 <script src="/js/bootstrap.min.js"></script>
 </body>

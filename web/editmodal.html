@@ -1,0 +1,36 @@
+<div class="modal-header">
+        <h3 class="modal-title" id="modal-title">update values</h3>
+       </div>
+       <div class="modal-body" id="modal-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>PassPort Number</td>
+                    <td>Aadhar Number</td>
+                    <td>Pan Number</td>
+                    <td>Address</td>
+                  </tr>
+            </thead>
+            <tbody>
+              <form>
+              <tr>
+              <td >
+                 <input type="text" disabled class="form-control" ng-model="userdata.username">
+                </td>
+                <td><input type="text" class="form-control" ng-model="userdata.passportnum">
+               </td>
+               <td> <input type="text" class="form-control" ng-model="userdata.aadharnum">
+               </td><td> <input type="text" class="form-control" ng-model="userdata.pannum">
+              </td>
+            </tr>
+            </form>
+            </tbody>
+          </table>
+       </div>
+       <div class="modal-footer">
+          <button class="btn btn-primary" type="button" ng-click="del()">Delete</button>
+          <button class="btn btn-primary" type="button" ng-click="ok()">Update</button>
+        <button class="btn btn-warning" type="button" ng-click="cancelModal()">Cancel</button>
+       
+       </div>

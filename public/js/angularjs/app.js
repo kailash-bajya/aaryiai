@@ -1,4 +1,11 @@
-var app = angular.module('myApp',['ui.bootstrap']);
+var app = angular.module('myApp',['ui.bootstrap','ngRoute']);
+app.config(function($routeProvider){
+    $routeProvider.when('/',{
+                         templateUrl:'/signup'})
+                         .when('/login',{
+                             templateUrl:'/login'
+                         })
+})
 app.controller('myCtrl',['$scope','$http','$window','$modal','$filter',function($scope,$http,$window,$modal,$filter){
     $scope.data={passport:false,aadhar:false,pan:false};
     $scope.register = function(){
@@ -26,6 +33,8 @@ app.controller('myCtrl',['$scope','$http','$window','$modal','$filter',function(
              )
              .then(function(response) {
                  console.log(response.data);
+                     alert(response.data.data)
+                     $scope.data={passport:false,aadhar:false,pan:false};
              })
         
     }

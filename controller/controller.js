@@ -32,9 +32,14 @@ exports.login =(username,password)=>{
 exports.adminverify=(adminuser,password)=>{
    return new Promise(function(resolve){
        knex('admindetails').select('adminname').where({adminname:adminuser,adminpassword:password}).then(function(result){
+        console.log(result)
+        if(result.length==1)
         resolve({status:true,data:"You are logedIn"})
+        else
+        resolve({status:false,data:"Invalid credentials"})
         
        },function(err){
+           console.log(err);
         resolve({status:false,data:"Something went wrong. contact to admin team"})
         
        })
@@ -46,9 +51,10 @@ exports.adminverify=(adminuser,password)=>{
 
 exports.senddetails = ()=>{
    return new Promise(function(resolve){
-     knex('userdetails').select('name','passportnum','aadharnum','pannum','dofb').then(function(result){
+     knex('userdetails').select('username','passportnum','aadharnum','pannum','dofb').then(function(result){
        resolve({status:true,"data":result})
      },function(err){
+         console.log(err);
        resolve({status:false,data:"please contact with admin."})
      })
    },function(reject){
@@ -58,9 +64,10 @@ exports.senddetails = ()=>{
 
 exports.sendpassportreports = ()=>{
     return new Promise(function(resolve){
-       knex('userdetails').select('username','passportname','pafilename').where({pastatus:true}).then(function(result){
+       knex('userdetails').select('username','passportnum').where({pastatus:true}).then(function(result){
             resolve({status:true,data:result,total:result.length})
        },function(err){
+           console.log(err);
             resolve({status:false,data:"contact to admin",length:0})
        }
        )
@@ -71,9 +78,10 @@ exports.sendpassportreports = ()=>{
 
 exports.sendaadharreports = ()=>{
     return new Promise(function(resolve){
-       knex('userdetails').select('username','aadharnum','aadharfile').where({aadharstatus:true}).then(function(result){
+       knex('userdetails').select('username','aadharnum').where({aadharstatus:true}).then(function(result){
             resolve({status:true,data:result,total:result.length})
        },function(err){
+           console.log(err);
             resolve({status:false,data:"contact to admin",length:0})
        }
        )
@@ -85,9 +93,10 @@ exports.sendaadharreports = ()=>{
 
 exports.sendpanreports = ()=>{
     return new Promise(function(resolve){
-       knex('userdetails').select('username','pannum','panfile').where({panstatus:true}).then(function(result){
+       knex('userdetails').select('username','pannum').where({panstatus:true}).then(function(result){
             resolve({status:true,data:result,total:result.length})
        },function(err){
+           console.log(err);
             resolve({status:false,data:"contact to admin",length:0})
        }
        )
@@ -100,7 +109,7 @@ exports.totaluser = ()=>{
     return new Promise(function(resolve){
         knex('userdetails').count().then(function(result){
         console.log(result);
-          resolve({status:true,total:result})
+          resolve({status:true,total:result[0].count})
         },function(err){
           resolve({status:false,total:0});
         })
@@ -110,9 +119,23 @@ exports.totaluser = ()=>{
 }
 
 
-exports.getuseralldetails = ()=>{
+exports.updatedata = (req)=>{
+    console.log(req)
     return new Promise(function(resolve){
-         knex('userdetails').select('username','dofb','passportnum','aadharnum','pannum').then(function(result){
+         knex('userdetails').update({passportnum:req.passportnum,pastatus:req.passport,aadharnum:req.aadharnum,aadharstatus:req.aadhar,pannum:req.pannum,panstatus:req.pan}).where({username:req.username}).then(function(result){
+            resolve({status:true,data:result});
+         },function(err){
+           console.log(err);
+           resolve({status:false,data:"contact to admin"});
+         })
+    },function(reject){
+           reject({status:false,data:"contact to admin."});
+    })
+}
+
+exports.deletedata = (req)=>{
+    return new Promise(function(resolve){
+         knex('userdetails').delete().where({username:req.username}).then(function(result){
             resolve({status:true,data:result});
          },function(err){
            console.log(err);

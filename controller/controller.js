@@ -163,6 +163,7 @@ return new Promise(function(resolve){
 }
 
 exports.getpassport=(req)=>{
+    console.log(req);
     return new Promise(function(resolve){
         knex('userdetails').select('pafile','pastatus').where({username:req}).then(function(result){
              console.log(result);

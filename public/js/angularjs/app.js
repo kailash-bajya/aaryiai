@@ -67,13 +67,22 @@ $scope.userlogin1 = function(){
     })
 }
 $scope.passport1 = function(){
-    $http({method:'get',url:'/getpassport',data:$scope.userlogin}).then(function(response){
+        
+    $http({method:'get',url:'/getpassport/'+localStorage.getItem('user')}).then(function(response){
         console.log(response.data);
         if(response.data.status){
+            if(response.data.data[0].pafile != null) {
             var img = document.createElement('img');
-            img.src = 'data:image/jpeg;base64,' + btoa( response.data.data);
+            img.setAttribute('width',200);
+            img.setAttribute('height',100);
+            $scope.imgpath = '/images/'+response.data.data[0].pafile;
+            img.src =$scope.imgpath;
             document.body.appendChild(img);
-            $scope.imagesrc = response.data.data;
+            }
+            else
+            {
+                alert('image not uploaded');
+            }
         }
         else
         {
@@ -82,13 +91,21 @@ $scope.passport1 = function(){
     })
 }
 $scope.aadhar1 = function(){
-    $http({method:'get',url:'/getpaadhar',data:$scope.userlogin}).then(function(response){
+    $http({method:'get',url:'/getaadhar/'+localStorage.getItem('user')}).then(function(response){
         console.log(response.data);
         if(response.data.status){
+            if(response.data.data[0].pafile != null) {
             var img = document.createElement('img');
-            img.src = 'data:image/jpeg;base64,' + btoa( response.data.data);
+            img.setAttribute('width',200);
+            img.setAttribute('height',100);
+            $scope.imgpath = '/images/'+response.data.data[0].pafile;
+            img.src =$scope.imgpath;
             document.body.appendChild(img);
-            $scope.imagesrc = response.data.data;
+        }
+        else
+        {
+            alert('image not uploaded');
+        }
         }
         else
         {
@@ -97,13 +114,22 @@ $scope.aadhar1 = function(){
     })
 }
 $scope.pan1 = function(){
-    $http({method:'get',url:'/getpan',data:$scope.userlogin}).then(function(response){
+   
+    $http({method:'get',url:'/getpan/'+localStorage.getItem('user')}).then(function(response){
         console.log(response.data);
         if(response.data.status){
+            if(response.data.data[0].pafile != null) {
             var img = document.createElement('img');
-            img.src = 'data:image/jpeg;base64,' + btoa( response.data.data);
+            img.setAttribute('width',200);
+            img.setAttribute('height',100);
+            $scope.imgpath = '/images/'+response.data.data[0].pafile;
+            img.src =$scope.imgpath;
             document.body.appendChild(img);
-            $scope.imagesrc = response.data.data;
+            }
+        else
+        {
+            alert('image not uploaded');
+        }
         }
         else
         {

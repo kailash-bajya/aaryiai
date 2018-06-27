@@ -88,18 +88,18 @@ controller.userlogin(req.body).then(function(data){
   res.send(data);
 })
 })
-router.get('/getpassport',function(req,res){
-  controller.getpassport(req).then(function(data){
+router.get('/getpassport/:userid',function(req,res){
+  controller.getpassport(req.params.userid).then(function(data){
     res.send(data);
   })
 })
-router.get('/getaadhar',function(req,res){
-  controller.getaadhar(req).then(function(data){
+router.get('/getaadhar/:userid',function(req,res){
+  controller.getaadhar(req.params.userid).then(function(data){
     res.send(data);
   })
 })
-router.get('/getpan',function(req,res){
-    controller.getpan(req).then(function(data){
+router.get('/getpan/:userid',function(req,res){
+    controller.getpan(req.params.userid).then(function(data){
       res.send(data);
     })
 })
